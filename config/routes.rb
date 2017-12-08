@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :tweets
-  resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :tweets, only: :index
+
+  resources :users, only: [:index, :show, :edit, :update, :destroy] do
+    resources :tweets
+  end
+
+  root to: "tweets#index"
 end
