@@ -1,0 +1,11 @@
+<div class="card mb-3 border-primary">
+  <div class="card-header">
+    <%= l(tweet.created_at, format: :short) %>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p><%= tweet.body %></p>
+      <footer class="small text-muted">-- <%= link_to tweet.user.name, tweet.user %></footer>
+    </blockquote>
+  </div>
+</div>

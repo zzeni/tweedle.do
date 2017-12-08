@@ -1,19 +1,7 @@
 <h1 class="mb-4">Tweets</h1>
 
 <section class="tweets">
-  <% @tweets.each do |tweet| %>
-    <div class="card mb-3 border-primary">
-      <div class="card-header">
-       <%= l(tweet.created_at, format: :short) %>
-      </div>
-      <div class="card-body">
-        <blockquote class="blockquote mb-0">
-         <p><%= tweet.body %></p>
-         <footer class="small text-muted">-- <%= link_to tweet.user.name, tweet.user %></footer>
-        </blockquote>
-      </div>
-    </div>
-  <% end %>
+  <%= render @tweets %>
 </section>
 
 <%= paginate @tweets, window: 1, outer_window: 1 %>
