@@ -2,7 +2,10 @@
   <div class="card-header">
     <%= l(tweet.created_at, format: :short) %>
   </div>
-  <div class="card-body">
+  <div class="card-body d-flex">
+    <div class="avatar-holder rounded-circle border align-self-baseline mr-4">
+     <%= image_tag tweet.user.avatar.url(:thumb), alt: "#{tweet.user.name} image" %>
+    </div>
     <blockquote class="blockquote mb-0">
       <p><%= tweet.body %></p>
       <footer class="small text-muted">-- <%= link_to tweet.user.name, tweet.user %></footer>
