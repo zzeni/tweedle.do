@@ -3,7 +3,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.eager_load(:user).all
   end
 
   # GET /tweets/1

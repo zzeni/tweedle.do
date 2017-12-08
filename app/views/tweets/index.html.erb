@@ -1,20 +1,17 @@
-<h1>Tweets</h1>
+<h1 class="mb-4">Tweets</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Body</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tweets.each do |tweet| %>
-      <tr>
-        <td><%= tweet.body %></td>
-        <td><%= tweet.user %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<section class="tweets">
+  <% @tweets.each do |tweet| %>
+    <div class="card mb-3 border-primary">
+      <div class="card-header">
+       <%= l(tweet.created_at, format: :short) %>
+      </div>
+      <div class="card-body">
+        <blockquote class="blockquote mb-0">
+         <p><%= tweet.body %></p>
+         <footer class="small text-muted">-- <%= link_to tweet.user.name, tweet.user %></footer>
+        </blockquote>
+      </div>
+    </div>
+  <% end %>
+</section>
