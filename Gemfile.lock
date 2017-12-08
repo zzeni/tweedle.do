@@ -84,9 +84,6 @@ GEM
       activesupport (>= 4.2.0)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
-    jbuilder (2.7.0)
-      activesupport (>= 4.2.0)
-      multi_json (>= 1.2)
     jquery-rails (4.3.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -108,7 +105,6 @@ GEM
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.10.3)
-    multi_json (1.12.2)
     nio4r (2.1.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
@@ -215,7 +211,6 @@ DEPENDENCIES
   devise (~> 4.3.0)
   fabrication
   faker!
-  jbuilder (~> 2.5)
   jquery-rails (~> 4.3.1)
   listen (>= 3.0.5, < 3.2)
   paperclip (~> 5.1.0)
