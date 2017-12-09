@@ -1,29 +1,7 @@
 <div class="d-lg-flex mt-3">
   <section class="left mr-lg-5 mb-5">
     <h1 class="mb-3"><%= @user.name %>'s Profile</h1>
-
-    <div class="card border-primary user my-3">
-      <%= image_tag @user.avatar.url(:medium), class: "card-image-top rounded-circle bg-light" %>
-      <div class="card-header bg-info text-white">
-        <%= @user.name %>
-      </div>
-      <div class="card-body">
-        <ul>
-          <li class="my-2"><strong>Total tweets:</strong> <%= @user.tweets.count %></li>
-          <li class="my-2"><strong>Total in the last week:</strong> <%= @user.tweets.where('created_at > ?', 1.week.ago).count %></li>
-          <li class="my-2"><strong>Email:</strong> <%= @user.email %></li>
-        </ul>
-
-      </div>
-        <% if @user == current_user %>
-          <div class="btn-group d-flex">
-            <%= link_to 'Edit', edit_user_path(@user), class: 'btn btn-info col-sm-6' %>
-            <%= link_to 'Back', users_path, class: 'btn btn-secondary col-sm-6 ml-0' %>
-          </div>
-        <% else %>
-          <%= link_to 'Back', users_path, class: 'btn btn-secondary btn-block' %>
-        <% end %>
-    </div>
+    <%= render @user, links_to: { text: 'Back', path: users_path } %>
   </section>
 
   <section class="right">
