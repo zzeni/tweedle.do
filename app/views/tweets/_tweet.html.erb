@@ -1,10 +1,20 @@
 <div class="card mb-3 border-primary">
-  <div class="card-header">
+  <div class="card-header d-flex">
     <%= l(tweet.created_at, format: :short) %>
+    <% if current_user && current_user == tweet.user %>
+      <div class="ml-auto">
+        <%= link_to 'edit', edit_user_tweet_path(tweet.user, tweet), class: 'btn btn-warning btn-sm' %>
+        <%= link_to 'delete',
+                    user_tweet_path(tweet.user, tweet),
+                    method: :delete,
+                    class: 'btn btn-danger btn-sm',
+                    data: { confirm: 'Are you really sure you want to delete this tweet (it will be gone for good) ?' } %>
+      </div>
+    <% end %>
   </div>
   <div class="card-body d-flex">
     <div class="avatar-holder rounded-circle border align-self-baseline mr-4">
-     <%= image_tag tweet.user.avatar.url(:thumb), alt: "#{tweet.user.name} image" %>
+      <%= image_tag tweet.user.avatar.url(:thumb), alt: "#{tweet.user.name} image" %>
     </div>
     <blockquote class="blockquote mb-0">
       <p><%= tweet.body %></p>

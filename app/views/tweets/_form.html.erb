@@ -1,4 +1,6 @@
-<%= form_with(model: tweet, url: user_tweets_path(current_user), local: true, class: 'mt-3') do |form| %>
+<% url = action_name == 'edit' ? user_tweet_path(current_user, tweet) : user_tweets_path(current_user) %>
+
+<%= form_with(model: tweet, url: url, local: true, class: 'mt-3') do |form| %>
   <% if tweet.errors.any? %>
     <div id="error_explanation" class="my-4">
       <h2><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
@@ -17,6 +19,6 @@
 
   <div class="d-flex justify-content-end">
     <%= link_to 'Cancel', root_path, class: 'btn btn-outline-secondary mr-1' %>
-    <button type="submit" class="btn btn-outline-primary">Create</button>
+    <button type="submit" class="btn btn-outline-primary"><%= action_name == 'edit' ? 'Update' : 'Create' %></button>
   </div>
 <% end %>
