@@ -1,6 +1,6 @@
-<%= form_with(model: tweet, local: true) do |form| %>
+<%= form_with(model: tweet, url: user_tweets_path(current_user), local: true, class: 'mt-3') do |form| %>
   <% if tweet.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="my-4">
       <h2><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
 
       <ul>
@@ -11,17 +11,12 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_field :body, id: :tweet_body %>
+  <div class="form-group">
+    <%= form.text_area :body, id: :tweet_body, class: 'form-control', rows: 6 %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :tweet_user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="d-flex justify-content-end">
+    <%= link_to 'Cancel', root_path, class: 'btn btn-outline-secondary mr-1' %>
+    <button type="submit" class="btn btn-outline-primary">Create</button>
   </div>
 <% end %>

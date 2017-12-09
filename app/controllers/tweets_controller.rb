@@ -1,9 +1,10 @@
 class TweetsController < ApplicationController
+  before_action :set_user, only: [:edit, :create, :update, :destroy]
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
 
   # GET /tweets
   def index
-    @tweets = Tweet.eager_load(:user).page(params[:page]).per(3)
+    @tweets = Tweet.order(created_at: 'desc').eager_load(:user).page(params[:page]).per(3)
   end
 
   # GET /tweets/1
@@ -22,9 +23,10 @@ class TweetsController < ApplicationController
   # POST /tweets
   def create
     @tweet = Tweet.new(tweet_params)
+    @tweet.user_id = @user.id
 
     if @tweet.save
-      redirect_to @tweet, notice: 'Tweet was successfully created.'
+      redirect_to root_path, notice: 'Tweet was successfully created.'
     else
       render :new
     end
@@ -46,13 +48,19 @@ class TweetsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tweet
-      @tweet = Tweet.find(params[:id])
-    end
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def tweet_params
-      params.require(:tweet).permit(:body, :user_id)
+  def set_user
+    @user = current_user
+    unless @user && params[:user_id] == @user.id.to_s
+      redirect_to root_path, alert: "Invalid action"
     end
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def tweet_params
+    params.require(:tweet).permit(:body)
+  end
 end
