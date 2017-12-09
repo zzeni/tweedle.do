@@ -25,3 +25,13 @@ header {
 body {
   padding-top: 80px;
 }
+
+.image-preview {
+  width: 300px;
+  height: 300px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
