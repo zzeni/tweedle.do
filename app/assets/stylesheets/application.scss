@@ -2,3 +2,26 @@
 @import "scaffolds";
 @import "users";
 @import "tweets";
+
+html, body, #main-container {
+  height: 100%;
+}
+
+header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+
+  .navbar.bg-info .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, .85);
+
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+body {
+  padding-top: 80px;
+}
