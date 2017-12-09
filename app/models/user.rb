@@ -12,6 +12,9 @@ class User < ApplicationRecord
                        content_type: { content_type: "image/jpeg" },
                        size: { in: 0..2.megabytes }
 
+  validates :name, presence: true
+  validates :email, uniqueness: true
+
   # fake the Devise::Trackable IP properties, in order to omit them in the users table
   attr_accessor :current_sign_in_ip, :last_sign_in_ip
 end
