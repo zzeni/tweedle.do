@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <div class="container" id="main-container">
+  <div class="container container d-flex flex-column" id="main-container">
     <main>
       <% flash.each do |name, msg| %>
           <%= content_tag(:div, msg, class: "alert alert-#{name == 'notice' ? 'info' : 'danger'}") %>
