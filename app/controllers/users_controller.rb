@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, except: [:show, :index]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_owner!, except: [:show, :index]
 
   # GET /users
   def index
@@ -47,13 +49,19 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def user_params
-      params.require(:user).permit(:name)
-    end
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def authenticate_owner!
+    return if current_user == @user
+    flash[:alert] = "This action is not allowed"
+    redirect_back fallback_location: root_path
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def user_params
+    params.require(:user).permit(:name)
+  end
 end
